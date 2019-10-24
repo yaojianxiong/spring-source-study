@@ -56,6 +56,10 @@ import org.springframework.beans.factory.Aware;
  * @see org.springframework.context.support.ApplicationObjectSupport
  * @see org.springframework.beans.factory.BeanFactoryAware
  */
+
+/**
+ *用于bean加载过程注入容器对象
+ */
 public interface ApplicationContextAware extends Aware {
 
 	/**

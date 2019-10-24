@@ -56,6 +56,13 @@ import org.springframework.util.ObjectUtils;
  * @see #getApplicationListeners(ApplicationEvent, ResolvableType)
  * @see SimpleApplicationEventMulticaster
  */
+
+/**
+ * ￥￥接口隔离
+ * BeanFactoryAware 注入容器
+ * ApplicationEventMulticaster 广播功能
+ * BeanClassLoaderAware 设置字节码加载
+ */
 public abstract class AbstractApplicationEventMulticaster
 		implements ApplicationEventMulticaster, BeanClassLoaderAware, BeanFactoryAware {
 

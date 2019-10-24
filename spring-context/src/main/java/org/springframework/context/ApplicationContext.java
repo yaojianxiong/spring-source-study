@@ -54,6 +54,18 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.core.io.ResourceLoader
  */
+
+/**
+ * 接口设计思路
+ * 遵从￥￥接口隔离原则
+ * EnvironmentCapable 获取环境变量接口
+ * ListableBeanFactory 获取bean相关属性清单接口 -> BeanFactory 容器接口
+ * HierarchicalBeanFactory  设置父容器  ConfigurableBeanFactory # setParentBeanFactory
+ * MessageSource 国际化支持
+ * ApplicationEventPublisher 消息广播支持
+ * ResourcePatternResolver 获取资源接口,解析器类型接口，实现类实际是委派其他类进行解析获取资源(￥￥适配模式)  PathMatchingResourcePatternResolver
+ *
+ */
 public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
 		MessageSource, ApplicationEventPublisher, ResourcePatternResolver {
 

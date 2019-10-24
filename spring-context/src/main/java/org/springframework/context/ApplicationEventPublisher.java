@@ -26,7 +26,13 @@ package org.springframework.context;
  * @see ApplicationContext
  * @see ApplicationEventPublisherAware
  * @see org.springframework.context.ApplicationEvent
- * @see org.springframework.context.event.EventPublicationInterceptor
+ * @see org.springframework.context.event.EventPublicationInterceptor 事件拦截，aop
+ */
+
+/**
+ *
+ * @see org.springframework.context.event.AbstractApplicationEventMulticaster
+ *
  */
 public interface ApplicationEventPublisher {
 

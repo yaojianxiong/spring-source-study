@@ -38,6 +38,12 @@ package org.springframework.context;
  * @see org.springframework.web.servlet.FrameworkServlet#setContextInitializerClasses
  * @see org.springframework.web.servlet.FrameworkServlet#applyInitializers
  */
+
+/**
+ * 容器￥￥扩展接口
+ * 主要用于对ConfigurableApplicationContext#refresh() 容器刷新之前对容器做一些操作，可以设置BeanDefinition/BeanFactoryPostProcessor信息等
+ * spring boot支持 ----------SpringApplication applyInitializers(context);
+ */
 public interface ApplicationContextInitializer<C extends ConfigurableApplicationContext> {
 
 	/**

@@ -25,6 +25,12 @@ import java.util.EventObject;
  * @author Rod Johnson
  * @author Juergen Hoeller
  */
+
+/**
+ * 观察者￥￥设计模式 传播事件
+ * @see ApplicationContext#publishEvent(Object)
+ * @see org.springframework.context.support.AbstractApplicationContext
+ */
 public abstract class ApplicationEvent extends EventObject {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability */
