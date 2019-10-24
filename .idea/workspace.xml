@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e1b4a5c5-bd7a-4a7a-a798-cef5a2266e66" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/spring-test/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-test/build/" />
+    <ignored path="$PROJECT_DIR$/spring-test/out/" />
+    <ignored path="$PROJECT_DIR$/spring-aspects/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-aspects/build/" />
+    <ignored path="$PROJECT_DIR$/spring-aspects/out/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument-tomcat/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument-tomcat/build/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument-tomcat/out/" />
+    <ignored path="$PROJECT_DIR$/spring-jms/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-jms/build/" />
+    <ignored path="$PROJECT_DIR$/spring-jms/out/" />
+    <ignored path="$PROJECT_DIR$/spring-web/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-web/build/" />
+    <ignored path="$PROJECT_DIR$/spring-web/out/" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-tiles2/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-tiles2/build/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-tiles2/out/" />
+    <ignored path="$PROJECT_DIR$/spring-core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-core/build/" />
+    <ignored path="$PROJECT_DIR$/spring-core/out/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument/build/" />
+    <ignored path="$PROJECT_DIR$/spring-instrument/out/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc/build/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc/out/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-portlet/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-portlet/build/" />
+    <ignored path="$PROJECT_DIR$/spring-webmvc-portlet/out/" />
+    <ignored path="$PROJECT_DIR$/spring-expression/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-expression/build/" />
+    <ignored path="$PROJECT_DIR$/spring-expression/out/" />
+    <ignored path="$PROJECT_DIR$/spring-aop/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-aop/build/" />
+    <ignored path="$PROJECT_DIR$/spring-aop/out/" />
+    <ignored path="$PROJECT_DIR$/spring-websocket/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-websocket/build/" />
+    <ignored path="$PROJECT_DIR$/spring-websocket/out/" />
+    <ignored path="$PROJECT_DIR$/spring-framework-bom/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-framework-bom/build/" />
+    <ignored path="$PROJECT_DIR$/spring-framework-bom/out/" />
+    <ignored path="$PROJECT_DIR$/spring-beans/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-beans/build/" />
+    <ignored path="$PROJECT_DIR$/spring-beans/out/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate5/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate5/build/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate5/out/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate4/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate4/build/" />
+    <ignored path="$PROJECT_DIR$/spring-orm-hibernate4/out/" />
+    <ignored path="$PROJECT_DIR$/spring-beans-groovy/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-beans-groovy/build/" />
+    <ignored path="$PROJECT_DIR$/spring-beans-groovy/out/" />
+    <ignored path="$PROJECT_DIR$/spring-context/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-context/build/" />
+    <ignored path="$PROJECT_DIR$/spring-context/out/" />
+    <ignored path="$PROJECT_DIR$/spring-context-support/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-context-support/build/" />
+    <ignored path="$PROJECT_DIR$/spring-context-support/out/" />
+    <ignored path="$PROJECT_DIR$/buildSrc/.gradle/" />
+    <ignored path="$PROJECT_DIR$/buildSrc/build/" />
+    <ignored path="$PROJECT_DIR$/buildSrc/out/" />
+    <ignored path="$PROJECT_DIR$/spring-orm/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-orm/build/" />
+    <ignored path="$PROJECT_DIR$/spring-orm/out/" />
+    <ignored path="$PROJECT_DIR$/spring-jdbc/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-jdbc/build/" />
+    <ignored path="$PROJECT_DIR$/spring-jdbc/out/" />
+    <ignored path="$PROJECT_DIR$/spring-tx/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-tx/build/" />
+    <ignored path="$PROJECT_DIR$/spring-tx/out/" />
+    <ignored path="$PROJECT_DIR$/spring-messaging/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-messaging/build/" />
+    <ignored path="$PROJECT_DIR$/spring-messaging/out/" />
+    <ignored path="$PROJECT_DIR$/spring-oxm/.gradle/" />
+    <ignored path="$PROJECT_DIR$/spring-oxm/build/" />
+    <ignored path="$PROJECT_DIR$/spring-oxm/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/spring-aop">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring" type="f1a62948:ProjectNode" />
+                <item name="spring" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring" type="f1a62948:ProjectNode" />
+                <item name="spring" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring" type="f1a62948:ProjectNode" />
+                <item name="spring" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradle.properties">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5">
+              <caret line="200" column="21" selection-start-line="200" selection-start-column="21" selection-end-line="200" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spring-orm/src/main/java/org/springframework/orm/jdo/LocalPersistenceManagerFactoryBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1900">
+              <caret line="109" selection-start-line="109" selection-end-line="109" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="1375">
+                <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="18" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradlew">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4050">
+              <caret line="162" column="48" selection-start-line="162" selection-start-column="48" selection-end-line="162" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ma</find>
+      <find>apply</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/build.gradle" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-178" />
+    <option name="y" value="11" />
+    <option name="width" value="1920" />
+    <option name="height" value="1041" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="spring" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-framework-4.3.16.RELEASE" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571888534021" />
+    <property name="last_opened_file_path" value="$USER_HOME$/spring-source-study" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle.spring-framework-4.3.16.RELEASE [install]">
+    <configuration name="spring-framework-4.3.16.RELEASE [gradle writeNewPom]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="gradle" />
+            <option value="writeNewPom" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="spring-framework-4.3.16.RELEASE [install]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="install" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.spring-framework-4.3.16.RELEASE [install]" />
+        <item itemvalue="Gradle.spring-framework-4.3.16.RELEASE [gradle writeNewPom]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e1b4a5c5-bd7a-4a7a-a798-cef5a2266e66" name="Default Changelist" comment="" />
+      <created>1571886790225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571886790225</updated>
+      <workItem from="1571886796350" duration="1568000" />
+      <workItem from="1571888942537" duration="605000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2173000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1843" height="1096" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25238362" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3561786" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32917964" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32917964" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Spring" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="sbt" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="JSF" order="7" />
+      <window_info anchor="right" id="Gradle" order="8" visible="true" weight="0.16152552" />
+      <window_info anchor="right" id="Database" order="9" />
+      <window_info anchor="right" id="Palette&#9;" order="10" />
+      <window_info anchor="right" id="Theme Preview" order="11" />
+      <window_info anchor="right" id="Bean Validation" order="12" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-orm/src/main/java/org/springframework/orm/jdo/LocalPersistenceManagerFactoryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1900">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1375">
+            <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4050">
+          <caret line="162" column="48" selection-start-line="162" selection-start-column="48" selection-end-line="162" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="200" column="21" selection-start-line="200" selection-start-column="21" selection-end-line="200" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="gradleExecuteTaskHistory">
+    <option value="$PROJECT_DIR$" />
+    <option value="gradle writeNewPom" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
