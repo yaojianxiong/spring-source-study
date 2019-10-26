@@ -16,7 +16,7 @@ buildscript {
 }
 
 plugins {
-	id "org.sonarqube" version "2.2.1"
+	id "org.sonarqube" version "2.6.1"
 }
 
 ext {
@@ -1093,10 +1093,10 @@ project("spring-aspects") {
 		testCompile("javax.mail:javax.mail-api:${javamailVersion}")
 	}
 
-	eclipse.project {
-		natures += "org.eclipse.ajdt.ui.ajnature"
-		buildCommands = [new org.gradle.plugins.ide.eclipse.model.BuildCommand("org.eclipse.ajdt.core.ajbuilder")]
-	}
+//	eclipse.project {
+////		natures += "org.eclipse.ajdt.ui.ajnature"
+////		buildCommands = [new org.gradle.plugins.ide.eclipse.model.BuildCommand("org.eclipse.ajdt.core.ajbuilder")]
+////	}
 }
 
 project("spring-framework-bom") {
