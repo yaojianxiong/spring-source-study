@@ -34,6 +34,13 @@ package org.springframework.beans.factory;
  * @author Chris Beams
  * @since 3.1
  */
+/**
+ * 使用Aware耦合了Spring功能，回调注入通知对象，Spring框架内部用来做注入
+ * @see org.springframework.context.support.ApplicationContextAwareProcessor#invokeAwareInterfaces
+ *  @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#ignoreDependencyInterface
+ * 通过实现BeanPostProcessor 在bean实例化之前接口回调注入接口适配对象
+ *
+ */
 public interface Aware {
 
 }
