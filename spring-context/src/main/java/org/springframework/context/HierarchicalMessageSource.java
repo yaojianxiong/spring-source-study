@@ -23,6 +23,11 @@ package org.springframework.context;
  * @author Rod Johnson
  * @author Juergen Hoeller
  */
+
+/**
+ * 层次结构 提供父子层级功能
+ * @see org.springframework.beans.factory.HierarchicalBeanFactory
+ */
 public interface HierarchicalMessageSource extends MessageSource {
 
 	/**

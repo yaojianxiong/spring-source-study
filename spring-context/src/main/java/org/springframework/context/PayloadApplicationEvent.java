@@ -29,6 +29,11 @@ import org.springframework.util.Assert;
  * @since 4.2
  * @param <T> the payload type of the event
  */
+
+/**
+ *封装事件对象
+ * payload 事件源
+ */
 @SuppressWarnings("serial")
 public class PayloadApplicationEvent<T> extends ApplicationEvent implements ResolvableTypeProvider {
 

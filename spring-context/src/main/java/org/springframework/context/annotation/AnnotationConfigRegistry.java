@@ -23,6 +23,10 @@ package org.springframework.context.annotation;
  * @author Juergen Hoeller
  * @since 4.1
  */
+
+/**
+ * 对容器提供注解配置的支持
+ */
 public interface AnnotationConfigRegistry {
 
 	/**

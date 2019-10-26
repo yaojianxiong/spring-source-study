@@ -33,6 +33,13 @@ import java.util.EventListener;
  * @param <E> the specific ApplicationEvent subclass to listen to
  * @see org.springframework.context.event.ApplicationEventMulticaster
  */
+
+/**
+ * @see org.springframework.context.event.EventListener
+ * 注解版本的实现
+ * @see org.springframework.scheduling.annotation.Async
+ * 支持异步广播
+ */
 public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {
 
 	/**

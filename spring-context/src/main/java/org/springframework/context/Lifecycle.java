@@ -46,6 +46,7 @@ package org.springframework.context;
  * @see org.springframework.jms.listener.AbstractMessageListenerContainer
  * @see org.springframework.scheduling.quartz.SchedulerFactoryBean
  */
+
 public interface Lifecycle {
 
 	/**

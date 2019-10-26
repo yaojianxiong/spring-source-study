@@ -39,6 +39,16 @@ import org.springframework.core.io.ProtocolResolver;
  * @author Chris Beams
  * @since 03.11.2003
  */
+
+/**
+ *提供配置化功能
+ * addBeanFactoryPostProcessor() 添加工厂后置处理器  如mybatis整合spring ,dubbo整合Spring等等，框架整合一般都需要通过此方式添加相关bean信息交给Spring管理
+ * addApplicationListener() 添加监听器
+ * addProtocolResolver() 添加资源解析处理
+ * refresh() 刷新配置/容器
+ * systemProperties 系统配置 System.setProperties
+ * systemEnvironment 系统环境变量
+ */
 public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable {
 
 	/**

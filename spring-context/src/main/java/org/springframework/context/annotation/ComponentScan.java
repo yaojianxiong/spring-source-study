@@ -52,6 +52,9 @@ import org.springframework.core.type.filter.TypeFilter;
  * @since 3.1
  * @see Configuration
  */
+/**
+ * @see ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, ConfigurationClassParser.SourceClass)
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
