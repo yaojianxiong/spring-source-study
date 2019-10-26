@@ -28,6 +28,11 @@ import org.springframework.beans.factory.Aware;
  * @since 1.1.1
  * @see ApplicationContextAware
  */
+
+/**
+ * 实现该接口的bean初始化前注入ApplicationEventPublisher
+ * @see org.springframework.context.support.ApplicationContextAwareProcessor#postProcessBeforeInitialization(Object, String)
+ */
 public interface ApplicationEventPublisherAware extends Aware {
 
 	/**

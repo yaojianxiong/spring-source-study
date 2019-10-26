@@ -32,7 +32,8 @@ package org.springframework.context;
 /**
  *
  * @see org.springframework.context.event.AbstractApplicationEventMulticaster
- *
+ *发布事件接口
+ * 采取观察者模式把事件广播到所有监听器
  */
 public interface ApplicationEventPublisher {
 
@@ -42,6 +43,8 @@ public interface ApplicationEventPublisher {
 	 * (such as RequestHandledEvent) or application-specific events.
 	 * @param event the event to publish
 	 * @see org.springframework.web.context.support.RequestHandledEvent
+	 * ApplicationEvent(Object source)
+	 * 事件源放在source里面
 	 */
 	void publishEvent(ApplicationEvent event);
 
@@ -53,6 +56,7 @@ public interface ApplicationEventPublisher {
 	 * @param event the event to publish
 	 * @since 4.2
 	 * @see PayloadApplicationEvent
+	 * event 封装在PayloadApplicationEvent.payload里面
 	 */
 	void publishEvent(Object event);
 

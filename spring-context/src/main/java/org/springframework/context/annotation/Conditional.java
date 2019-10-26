@@ -56,6 +56,12 @@ import java.lang.annotation.Target;
  * @since 4.0
  * @see Condition
  */
+
+/**
+ * ConditionalOnBean
+ * ConditionalOnClass...
+ * spring boot对其进行扩展条件匹配
+ */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

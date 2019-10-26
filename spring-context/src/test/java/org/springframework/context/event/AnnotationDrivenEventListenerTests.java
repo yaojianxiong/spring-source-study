@@ -39,6 +39,8 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -430,7 +432,18 @@ public class AnnotationDrivenEventListenerTests {
 	public void listenerWithNonMatchingPayload() {
 		load(TestEventListener.class);
 		TestEventListener listener = this.context.getBean(TestEventListener.class);
+		this.context.addApplicationListener(new ApplicationListener(){
 
+			@Override
+			public void onApplicationEvent(ApplicationEvent event) {
+				if(event instanceof  PayloadApplicationEvent){
+					PayloadApplicationEvent pEvent = (PayloadApplicationEvent)event;
+					if(pEvent.getPayload() instanceof Number){
+						System.out.println(pEvent.getPayload());
+					}
+				}
+			}
+		});
 		this.eventCollector.assertNoEventReceived(listener);
 		this.context.publishEvent(123L);
 		this.eventCollector.assertNoEventReceived(listener);

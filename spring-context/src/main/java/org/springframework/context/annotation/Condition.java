@@ -38,6 +38,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * @see Conditional
  * @see ConditionContext
  */
+
+/**
+ * @see ConditionEvaluator#shouldSkip(AnnotatedTypeMetadata)
+ * 用于匹配相关条件而决定是否加入Spring容器
+ */
 public interface Condition {
 
 	/**
