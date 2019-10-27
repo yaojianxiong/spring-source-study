@@ -40,6 +40,17 @@ import org.springframework.util.MultiValueMap;
  * @author Phillip Webb
  * @since 4.0
  */
+
+/**
+ * Condition计算器
+ * spring容器解析Condition委派该类执行
+ * shouldSkip(AnnotatedTypeMetadata metadata, ConfigurationPhase phase)判断bean是否要跳过加入容器解析
+ * getConditionClasses(AnnotatedTypeMetadata metadata)
+ * getCondition(String conditionClassName, ClassLoader classloader)
+ * 上面两个方法组合根据元数据信息获取到Condition注解对应的所有实现Condition接口的匹配中
+ * Condition#matches(ConditionContext context, AnnotatedTypeMetadata metadata)
+ *
+ */
 class ConditionEvaluator {
 
 	private final ConditionContextImpl context;

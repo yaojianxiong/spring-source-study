@@ -98,6 +98,24 @@ import org.springframework.util.StringUtils;
  * @author Sam Brannen
  * @since 3.0
  * @see ConfigurationClassBeanDefinitionReader
+ *
+ * DEFAULT_PROPERTY_SOURCE_FACTORY 默认的配置源生成工厂
+ * DEFERRED_IMPORT_COMPARATOR 默认比较器，根据实现PriorityOrdered接口排序
+ * metadataReaderFactory 实现类CachingMetadataReaderFactory 根据class信息创建metadataReader对象，通过metadataReader获取元数据
+ * problemReporter  实现类FailFastProblemReporter 异常发布
+ * environment
+ * resourceLoader
+ * registry
+ * componentScanParser ComponentScanAnnotationParser ComponentScan注解解析器
+ * conditionEvaluator 条件计算器
+ * configurationClasses 用于保存已经解析过的ConfigurationClass
+ * propertySourceNames 用来保证propertySource的添加顺序
+ * importStack import容器通过栈的形式实现
+ * deferredImportSelectors
+ * 内部类
+ * ImportStack
+ * DeferredImportSelectorHolder  xxxHolder 类似key value结构
+ * SourceClass 处理带注释的源类
  */
 class ConfigurationClassParser {
 
@@ -216,12 +234,14 @@ class ConfigurationClassParser {
 
 
 	protected void processConfigurationClass(ConfigurationClass configClass) throws IOException {
+		//条件判断是否跳过处理
 		if (this.conditionEvaluator.shouldSkip(configClass.getMetadata(), ConfigurationPhase.PARSE_CONFIGURATION)) {
 			return;
 		}
-
+		//获取配置类 判断是否解析处理过
 		ConfigurationClass existingClass = this.configurationClasses.get(configClass);
 		if (existingClass != null) {
+			//存在解析处理过的配置类 如果当前的配置类已经导入则合并导入结果集，否则则将旧类从记录移除，解析新类
 			if (configClass.isImported()) {
 				if (existingClass.isImported()) {
 					existingClass.mergeImportedBy(configClass);
@@ -244,6 +264,7 @@ class ConfigurationClassParser {
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
+			//解析配置类并返回其父类sourceClass，如果不存在父类则递归解析完成
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
 		}
 		while (sourceClass != null);
@@ -263,13 +284,16 @@ class ConfigurationClassParser {
 			throws IOException {
 
 		// Recursively process any member (nested) classes first
+		//先处理内部嵌套类 递归处理 processConfigurationClass(ConfigurationClass)
 		processMemberClasses(configClass, sourceClass);
 
 		// Process any @PropertySource annotations
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
 				org.springframework.context.annotation.PropertySource.class)) {
+			//配置环境必须是实现ConfigurableEnvironment 可配置的环境接口，一般是StandardEnvironment实现
 			if (this.environment instanceof ConfigurableEnvironment) {
+				//解析处理配置文件内容
 				processPropertySource(propertySource);
 			}
 			else {
@@ -427,8 +451,10 @@ class ConfigurationClassParser {
 		if (!StringUtils.hasLength(encoding)) {
 			encoding = null;
 		}
+		//@propertySource 中对应的文件位置
 		String[] locations = propertySource.getStringArray("value");
 		Assert.isTrue(locations.length > 0, "At least one @PropertySource(value) location is required");
+		//@PropertySource ignoreResourceNotFound默认false，及文件不存在则抛异常
 		boolean ignoreResourceNotFound = propertySource.getBoolean("ignoreResourceNotFound");
 
 		Class<? extends PropertySourceFactory> factoryClass = propertySource.getClass("factory");
@@ -437,8 +463,10 @@ class ConfigurationClassParser {
 
 		for (String location : locations) {
 			try {
+			    //解析classpath:${path.to.properties}/p1.properties 将${...}表达式解析
 				String resolvedLocation = this.environment.resolveRequiredPlaceholders(location);
 				Resource resource = this.resourceLoader.getResource(resolvedLocation);
+				//将resource包装成带编码的EncodedResource 通过factory创建PropertySource 并添加到环境配置中
 				addPropertySource(factory.createPropertySource(name, new EncodedResource(resource, encoding)));
 			}
 			catch (IllegalArgumentException ex) {

@@ -84,6 +84,38 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.*;
  * @author Phillip Webb
  * @since 3.0
  */
+
+/**
+ * ConfigurationClass后置处理器
+ * 加入spring容器方式
+ * @see org.springframework.context.annotation.AnnotationConfigUtils#registerAnnotationConfigProcessors(BeanDefinitionRegistry, Object)
+ * 实现接口
+ * BeanDefinitionRegistryPostProcessor BeanDefinition容器后置处理器
+ * PriorityOrdered 排序接口 Ordered.LOWEST_PRECEDENCE = Integer.MAX_VALUE;  最低优先级
+ * ResourceLoaderAware 注入内置对象ResourceLoader实现 资源加载器
+ * BeanClassLoaderAware 注入内置对象ClassLoader实现 （spring ioc加载字节码对象都是用ClassLoader 而不是用 class.foreName）
+ * EnvironmentAware 注入内置对象Environment 环境配置
+ * 成员变量
+ * IMPORT_REGISTRY_BEAN_NAME  ImportRegistry Import容器在SingletonBeanRegistry 单例容器里面的名字
+ * sourceExtractor 资源提取器 ConfigurationClassBeanDefinitionReader对象所需成员变量 AbstractBeanDefinition#setSource
+ * problemReporter 异常发布器 ConfigurationClassParser对象所需成员变量
+ * resourceLoader
+ * beanClassLoader
+ * metadataReaderFactory
+ * 提供set方法可以修改默认或注入容器实现
+ * setMetadataReaderFactoryCalled 提供标识用来判断是否向CachingMetadataReaderFactory创建中设置resourceLoader或beanClassLoader
+ * registriesPostProcessed
+ * factoriesPostProcessed
+ * 用来判断postProcessBeanDefinitionRegistry和postProcessBeanFactory方法在目标容器中只执行一次 且前者优先执行
+ * reader ConfigurationClassBeanDefinitionReader 用来将配置类所定义的BeanDefinition信息解析进Spring容器
+ * parser ConfigurationClassParser
+ * componentScanBeanNameGenerator 生成componentScan注解对应的bean parser中依赖其进行对componentScan解析
+ * importBeanNameGenerator 生成import注解对应的bean reader中依赖其
+ * localBeanNameGeneratorSet 是否需要从单例容器获取上面两个Generator对应的BeanNameGenerator实现（容器中不存在则使用默认的)
+ * @see ConfigurationClassParser
+ * @see ConfigurationClassBeanDefinitionReader
+ *
+ */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
 		PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
 

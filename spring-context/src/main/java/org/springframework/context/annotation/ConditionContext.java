@@ -28,6 +28,15 @@ import org.springframework.core.io.ResourceLoader;
  * @author Juergen Hoeller
  * @since 4.0
  */
+
+/**
+ * Condition上下文接口
+ * getRegistry()BeanDefinition容器
+ * getBeanFactory() bean容器
+ * getEnvironment() 环境配置
+ * getResourceLoader() 资源加载
+ * getClassLoader() 类加载器,spring是通过类加载器获取字节码对象 https://www.cnblogs.com/xxj-bigshow/p/9541809.html
+ */
 public interface ConditionContext {
 
 	/**
