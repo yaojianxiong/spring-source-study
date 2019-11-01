@@ -38,6 +38,13 @@ import org.springframework.beans.BeansException;
  * @see DestructionAwareBeanPostProcessor
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
+ *
+ * postProcessBeforeInitialization(Object bean, String beanName) 初始化前回调相关后置处理器方法
+ * @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsBeforeInitialization(Object, String)
+ * postProcessAfterInitialization(Object bean, String beanName) 初始化后回调相关后置处理器方法
+ * @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(Object, String)
+ *
+ * spring bean初始化扩展接口
  */
 public interface BeanPostProcessor {
 

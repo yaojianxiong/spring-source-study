@@ -18,8 +18,10 @@ package org.springframework.beans.factory.config;
 
 import java.beans.PropertyDescriptor;
 
+import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 
 /**
  * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
@@ -42,7 +44,20 @@ import org.springframework.beans.PropertyValues;
  * @since 1.2
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#setCustomTargetSourceCreators
  * @see org.springframework.aop.framework.autoproxy.target.LazyInitTargetSourceCreator
+ *
+ * Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) 实例化之前判断是否使用该方法返回的对象
+ * @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#resolveBeforeInstantiation(String, RootBeanDefinition)
+ * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#postProcessBeforeInstantiation(Class, String)
+ * boolean postProcessAfterInstantiation(Object bean, String beanName) 实例化之后 在填充属性之前判断该bean是否需要通过该方法处理后跳过填充属性
+ * @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean(String, RootBeanDefinition, BeanWrapper)
+ *
+ * PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException;
+ * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues(PropertyValues, PropertyDescriptor[], Object, String)
+ *
+ *
+ *bean 实例化后置处理器
  */
+
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
 	/**

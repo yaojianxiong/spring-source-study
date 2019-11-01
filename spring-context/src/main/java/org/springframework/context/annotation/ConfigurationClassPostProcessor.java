@@ -53,6 +53,7 @@ import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ConfigurationClassEnhancer.EnhancedConfiguration;
+import org.springframework.context.annotation.spryjxtest.TestLiteFullBean;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
 import org.springframework.core.env.Environment;
@@ -277,8 +278,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			// Simply call processConfigurationClasses lazily at this point then.
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
-
+		//对@Configuration类进行Cglib动态代理增强
+		//对@Bean标注的方法进行拦截，每次调用代理对象的@Bean方法返回的对象都是单例的，也就是Full Bean Mode
+		//而标注了@Compentment的类Spring是不会代理创建对象的，所有每次调用@Bean标注的方法没有拦截，及返回的是新对象，Lite Bean mode
+		/**
+		 * @see org.springframework.context.annotation.spryjxtest.TestLiteFullBean#liteFullBeanTest()
+		 */
 		enhanceConfigurationClasses(beanFactory);
+		//添加BeanPostProcessor bean后置处理器
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
 
@@ -394,8 +401,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 */
 	public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFactory) {
 		Map<String, AbstractBeanDefinition> configBeanDefs = new LinkedHashMap<String, AbstractBeanDefinition>();
+		//提取所有的full ConfigurationClass bean 及标注了@Configuration的类
 		for (String beanName : beanFactory.getBeanDefinitionNames()) {
 			BeanDefinition beanDef = beanFactory.getBeanDefinition(beanName);
+
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef)) {
 				if (!(beanDef instanceof AbstractBeanDefinition)) {
 					throw new BeanDefinitionStoreException("Cannot enhance @Configuration bean definition '" +
@@ -414,6 +423,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			// nothing to enhance -> return immediately
 			return;
 		}
+		//设置标注了@Configuration注解的类BeanDefinition信息进行AOP代理创建对象
 		ConfigurationClassEnhancer enhancer = new ConfigurationClassEnhancer();
 		for (Map.Entry<String, AbstractBeanDefinition> entry : configBeanDefs.entrySet()) {
 			AbstractBeanDefinition beanDef = entry.getValue();
@@ -437,7 +447,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 	}
 
-
+	/**
+	 *
+	 */
 	private static class ImportAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
 
 		private final BeanFactory beanFactory;

@@ -3,9 +3,9 @@ buildscript {
 		mavenLocal()
         mavenCentral()
 		jcenter()
+		maven { url "https://plugins.gradle.org/m2/" }
         maven { url "http://repo.spring.io/plugins-release" }
         maven { url "http://repo.spring.io/milestone" }
-        maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
 		classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7")
@@ -1373,7 +1373,7 @@ configure(rootProject) {
 
 	task wrapper(type: Wrapper) {
 		description = "Generates gradlew[.bat] scripts"
-		gradleVersion = "2.14.1"
+		gradleVersion = "4.8.1"
 
 		doLast() {
 			def gradleOpts = "-XX:MaxMetaspaceSize=1024m -Xmx1024m"

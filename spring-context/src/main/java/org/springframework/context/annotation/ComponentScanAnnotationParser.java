@@ -51,6 +51,9 @@ import org.springframework.util.StringUtils;
  * @since 3.1
  * @see ClassPathBeanDefinitionScanner#scan(String...)
  * @see ComponentScanBeanDefinitionParser
+ *
+ * beanNameGenerator
+ *
  */
 class ComponentScanAnnotationParser {
 

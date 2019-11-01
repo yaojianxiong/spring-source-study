@@ -46,11 +46,11 @@ public class ConfigurationClassWithConditionTests {
 	@Test
 	public void conditionalOnMissingBeanMatch() throws Exception {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(BeanOneConfiguration.class, BeanTwoConfiguration.class);
+		ctx.register(BeanComponentConfiguration.class);
 		ctx.refresh();
-		assertTrue(ctx.containsBean("bean1"));
-		assertFalse(ctx.containsBean("bean2"));
-		assertFalse(ctx.containsBean("configurationClassWithConditionTests.BeanTwoConfiguration"));
+		BeanComponentConfiguration bean = ctx.getBean(BeanComponentConfiguration.class);
+		System.out.println(bean);
+		ctx.close();
 	}
 
 	@Test
@@ -163,8 +163,20 @@ public class ConfigurationClassWithConditionTests {
 	static class BeanOneConfiguration {
 
 		@Bean
-		public ExampleBean bean1() {
-			return new ExampleBean();
+		public User user() {
+			return new User();
+		}
+
+		@Bean
+		public String name(User user) {
+			System.out.println(user.hashCode());
+			System.out.println(user().hashCode());
+			return "123";
+		}
+	}
+	static class User {
+		public User() {
+			System.out.println("user create... hashCode :" + this.hashCode());
 		}
 	}
 
@@ -175,6 +187,22 @@ public class ConfigurationClassWithConditionTests {
 		@Bean
 		public ExampleBean bean2() {
 			return new ExampleBean();
+		}
+	}
+
+	@Component
+	static class BeanComponentConfiguration {
+
+		@Bean
+		public User user() {
+			return new User();
+		}
+
+		@Bean
+		public String name(User user) {
+			System.out.println(user.hashCode());
+			System.out.println(user().hashCode());
+			return "123";
 		}
 	}
 
