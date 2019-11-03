@@ -46,6 +46,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * @see Import
  * @see ImportSelector
  * @see Configuration
+ * 回调向容器注入BeanDefinition
  */
 public interface ImportBeanDefinitionRegistrar {
 

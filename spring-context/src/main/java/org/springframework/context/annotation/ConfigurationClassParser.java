@@ -110,7 +110,7 @@ import org.springframework.util.StringUtils;
  * conditionEvaluator 条件计算器
  * configurationClasses 用于保存已经解析过的ConfigurationClass
  * propertySourceNames 用来保证propertySource的添加顺序
- * importStack import容器通过栈的形式实现
+ * importStack  ConfigurationClass容器map+stack
  * deferredImportSelectors
  * 内部类
  * ImportStack
@@ -178,6 +178,7 @@ class ConfigurationClassParser {
 
 
 	public void parse(Set<BeanDefinitionHolder> configCandidates) {
+		//初始化延迟导入器
 		this.deferredImportSelectors = new LinkedList<DeferredImportSelectorHolder>();
 
 		for (BeanDefinitionHolder holder : configCandidates) {
@@ -201,7 +202,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-
+		//处理实现DeferredImportSelector的导入类
 		processDeferredImportSelectors();
 	}
 
@@ -303,6 +304,7 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @ComponentScan annotations
+		//解析ComponentScans扫描包下对应标有的Component/Configuration类型的注解
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
 		if (!componentScans.isEmpty() &&
@@ -366,6 +368,7 @@ class ConfigurationClassParser {
 		for (SourceClass memberClass : sourceClass.getMemberClasses()) {
 			if (ConfigurationClassUtils.isConfigurationCandidate(memberClass.getMetadata()) &&
 					!memberClass.getMetadata().getClassName().equals(configClass.getMetadata().getClassName())) {
+				//importStack 用来保证递归解析configuration/component 只解析一次，并且如果出现循环依赖则出异常
 				if (this.importStack.contains(configClass)) {
 					this.problemReporter.error(new CircularImportProblem(configClass, this.importStack));
 				}
@@ -603,6 +606,7 @@ class ConfigurationClassParser {
 			this.importStack.push(configClass);
 			try {
 				for (SourceClass candidate : importCandidates) {
+					//如果匹配条件是ImportSelector并且不是deferredImportSelectors延迟选择器则解析递归解析导入的类
 					if (candidate.isAssignable(ImportSelector.class)) {
 						// Candidate class is an ImportSelector -> delegate to it to determine imports
 						Class<?> candidateClass = candidate.loadClass();
@@ -619,6 +623,7 @@ class ConfigurationClassParser {
 							processImports(configClass, currentSourceClass, importSourceClasses, false);
 						}
 					}
+					//如果是ImportBeanDefinitionRegistrar类型的则将registrar设置进configClass
 					else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
 						// Candidate class is an ImportBeanDefinitionRegistrar ->
 						// delegate to it to register additional bean definitions
@@ -634,6 +639,7 @@ class ConfigurationClassParser {
 						// process it as an @Configuration class
 						this.importStack.registerImport(
 								currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());
+						//将@Import注入的类按配置类进行解析
 						processConfigurationClass(candidate.asConfigClass(configClass));
 					}
 				}

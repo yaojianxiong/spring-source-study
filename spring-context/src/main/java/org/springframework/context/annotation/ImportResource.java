@@ -48,6 +48,7 @@ import org.springframework.core.annotation.AliasFor;
  * @since 3.0
  * @see Configuration
  * @see Import
+ * 导入bean资源
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

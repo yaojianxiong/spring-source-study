@@ -53,7 +53,7 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
  *
  * PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException;
  * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues(PropertyValues, PropertyDescriptor[], Object, String)
- *
+ *自动装配
  *
  *bean 实例化后置处理器
  */

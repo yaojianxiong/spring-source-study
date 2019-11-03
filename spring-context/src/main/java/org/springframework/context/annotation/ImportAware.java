@@ -27,6 +27,8 @@ import org.springframework.core.type.AnnotationMetadata;
  *
  * @author Chris Beams
  * @since 3.1
+ * @see org.springframework.context.annotation.ConfigurationClassPostProcessor.ImportAwareBeanPostProcessor
+ * ImportSelector类导入@Import类元信息
  */
 public interface ImportAware extends Aware {
 

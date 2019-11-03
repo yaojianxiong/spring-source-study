@@ -123,7 +123,7 @@ class ConfigurationClassBeanDefinitionReader {
 	 */
 	private void loadBeanDefinitionsForConfigurationClass(ConfigurationClass configClass,
 			TrackedConditionEvaluator trackedConditionEvaluator) {
-
+		//判断是否跳过该bean的解析，一般是用于@Bean上定义的@Condition条件
 		if (trackedConditionEvaluator.shouldSkip(configClass)) {
 			String beanName = configClass.getBeanName();
 			if (StringUtils.hasLength(beanName) && this.registry.containsBeanDefinition(beanName)) {
@@ -132,14 +132,17 @@ class ConfigurationClassBeanDefinitionReader {
 			this.importRegistry.removeImportingClass(configClass.getMetadata().getClassName());
 			return;
 		}
-
+		//判断该bean是否是通过@Import形式导入的(默认是实现ImportSelector类导入的配置类),如果是也需要注入BeanDefinition,如果是默认的配置类则以注入过BeanDefinition
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
+		//加载@Bean或者接口的default方法返回的BeanDefinition
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}
+		//加载@ImportedResources定义的BeanDefinition
 		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
+		//回调ImportBeanDefinitionRegistrar接口实现方法对容器注入BeanDefinition
 		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
 	}
 

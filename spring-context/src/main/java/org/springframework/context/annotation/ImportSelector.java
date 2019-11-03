@@ -44,6 +44,8 @@ import org.springframework.core.type.AnnotationMetadata;
  * @see Import
  * @see ImportBeanDefinitionRegistrar
  * @see Configuration
+ *
+ * 通过类全名称的方式导入bean
  */
 public interface ImportSelector {
 

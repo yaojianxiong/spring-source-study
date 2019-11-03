@@ -115,6 +115,12 @@ import java.lang.annotation.Target;
  * @author Juergen Hoeller
  * @since 3.1
  * @see org.aspectj.lang.annotation.Aspect
+ *
+ * aop注解类
+ * proxyTargetClass() 是否是CGLIB
+ * exposeProxy()是否暴露代理类的访问
+ * 关于事物代理话如果是同一个类的多个方法进行代理 则后面的代理事物还是在原来的事物上，因为取得还是同一个代理对象
+ * 解决办法AopContext.currentProxy() 产生新的代理对象进行调用方法
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

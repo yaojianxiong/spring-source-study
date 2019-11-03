@@ -21,6 +21,7 @@ import org.springframework.core.type.AnnotationMetadata;
 /**
  * @author Juergen Hoeller
  * @author Phil Webb
+ * Import容器，@Import所导入的配置类容器
  */
 interface ImportRegistry {
 
