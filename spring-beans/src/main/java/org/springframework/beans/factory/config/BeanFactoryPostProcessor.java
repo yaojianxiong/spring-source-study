@@ -41,6 +41,7 @@ import org.springframework.beans.BeansException;
  * @since 06.07.2003
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
+ * @see org.springframework.context.annotation.spryjxtest.CustomScanBeanTests#TestCustomScanBean
  */
 public interface BeanFactoryPostProcessor {
 

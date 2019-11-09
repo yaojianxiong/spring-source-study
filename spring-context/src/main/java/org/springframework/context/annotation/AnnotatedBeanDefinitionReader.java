@@ -79,7 +79,9 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
+		//初始化条件计算器
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		//注册默认的处理器 例如internalConfigurationAnnotationProcessor-ConfigurationClassPostProcessor
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 

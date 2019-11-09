@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author: yjx
  * @since 1.0
  */
-public class TestLiteFullBean {
+public class LiteFullBeanTests {
     @Test
     public void liteFullBeanTest(){
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();

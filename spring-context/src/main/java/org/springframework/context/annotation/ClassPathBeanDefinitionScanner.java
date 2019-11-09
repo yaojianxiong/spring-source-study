@@ -153,6 +153,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * definition profile metadata
 	 * @param resourceLoader the {@link ResourceLoader} to use
 	 * @since 4.3.6
+	 * see https://www.jianshu.com/p/7c2948f64b1c
 	 */
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,
 			Environment environment, ResourceLoader resourceLoader) {
@@ -161,6 +162,10 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 		this.registry = registry;
 
 		if (useDefaultFilters) {
+			//用于自定的加了@Compoent的注解的类信息能被扫描进容器
+			//如spring mvc实现的@Controller、@Service等
+			//只要是new ClassPathBeanDefinitionScanner(registry)都会触发方法，覆写该方法可用于扩展，如工厂后者处理器里创建类复写该方法来过滤扫描自定义注解
+			//通过addIncludeFilter注册
 			registerDefaultFilters();
 		}
 		setEnvironment(environment);

@@ -34,6 +34,10 @@ package org.springframework.beans.factory;
  * @see BeanNameAware
  * @see BeanFactoryAware
  * @see InitializingBean
+ *
+ * spring 默认使用 ClassUtils.getDefaultClassLoader()获取classLoader
+ * 默认反射创建对象也是通过classLoader机制进行创建对象
+ * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
  */
 public interface BeanClassLoaderAware extends Aware {
 
