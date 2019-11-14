@@ -94,6 +94,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext(String... basePackages) {
 		this();
+		//使用scanner扫描beanDefinition进容器
 		scan(basePackages);
 		refresh();
 	}

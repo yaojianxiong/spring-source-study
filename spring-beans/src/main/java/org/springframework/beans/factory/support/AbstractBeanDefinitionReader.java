@@ -43,6 +43,10 @@ import org.springframework.util.Assert;
  * @author Chris Beams
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
+ *
+ * 对 EnvironmentCapable BeanDefinitionReader 类定义的
+ * 功能进行实现
+ *
  */
 public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable, BeanDefinitionReader {
 
@@ -134,6 +138,7 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 	 * eagerly but rather to just register bean definitions with class names,
 	 * with the corresponding Classes to be resolved later (or never).
 	 * @see Thread#getContextClassLoader()
+	 * 把当前线程对应的ClassLoader赋给解析器 spi机制
 	 */
 	public void setBeanClassLoader(ClassLoader beanClassLoader) {
 		this.beanClassLoader = beanClassLoader;
