@@ -71,6 +71,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 */
 	@Override
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
+		//寻找解析器并解析操作
 		return findParserForElement(element, parserContext).parse(element, parserContext);
 	}
 
@@ -79,6 +80,7 @@ public abstract class NamespaceHandlerSupport implements NamespaceHandler {
 	 * the local name of the supplied {@link Element}.
 	 */
 	private BeanDefinitionParser findParserForElement(Element element, ParserContext parserContext) {
+		//获取元素名称，如<dubbo:registry 中的registry
 		String localName = parserContext.getDelegate().getLocalName(element);
 		BeanDefinitionParser parser = this.parsers.get(localName);
 		if (parser == null) {

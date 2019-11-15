@@ -461,6 +461,7 @@ public class BeanDefinitionParserDelegate {
 		if (beanDefinition != null) {
 			if (!StringUtils.hasText(beanName)) {
 				try {
+					//bean没有定义名字，则使用程序生成bean的名字
 					if (containingBean != null) {
 						beanName = BeanDefinitionReaderUtils.generateBeanName(
 								beanDefinition, this.readerContext.getRegistry(), true);
@@ -488,6 +489,7 @@ public class BeanDefinitionParserDelegate {
 				}
 			}
 			String[] aliasesArray = StringUtils.toStringArray(aliases);
+			//封装成BeanDefinitionHolder返回
 			return new BeanDefinitionHolder(beanDefinition, beanName, aliasesArray);
 		}
 
@@ -543,15 +545,15 @@ public class BeanDefinitionParserDelegate {
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 			//解析元数据 BeanDefinition#setAttribute
 			parseMetaElements(ele, bd);
-			//解析lookup-method 属性  重写方法返回对象
+			//解析lookup-method 属性  重写方法返回容器对应对象（替代抽象方法实现并返回）
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
-			//解析replaced_method属性
+			//解析replaced_method属性  重写方法
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 			//解析构造器
 			parseConstructorArgElements(ele, bd);
 			//解析property
 			parsePropertyElements(ele, bd);
-			//解析qualifier
+			//解析qualifier （指定Bean注入名称）
 			parseQualifierElements(ele, bd);
 
 			bd.setResource(this.readerContext.getResource());
@@ -1408,12 +1410,15 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	public BeanDefinition parseCustomElement(Element ele, BeanDefinition containingBd) {
+		//获取名称空间对应的Uri
 		String namespaceUri = getNamespaceURI(ele);
+		//根据名称空间找到对应的nameSpaceHandler
 		NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 		if (handler == null) {
 			error("Unable to locate Spring NamespaceHandler for XML schema namespace [" + namespaceUri + "]", ele);
 			return null;
 		}
+		//解析标签
 		return handler.parse(ele, new ParserContext(this.readerContext, this, containingBd));
 	}
 

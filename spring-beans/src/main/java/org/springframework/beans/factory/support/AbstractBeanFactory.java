@@ -1214,6 +1214,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (mbd != null) {
 			return mbd;
 		}
+		//getBeanDefinition(beanName)获取容器中的BeanDefinition
 		return getMergedBeanDefinition(beanName, getBeanDefinition(beanName));
 	}
 
@@ -1252,7 +1253,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			if (containingBd == null) {
 				mbd = this.mergedBeanDefinitions.get(beanName);
 			}
-
+			//BeanDefinition转为RootBeanDefinition
 			if (mbd == null) {
 				if (bd.getParentName() == null) {
 					// Use copy of given root bean definition.
@@ -1269,9 +1270,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					try {
 						String parentBeanName = transformedBeanName(bd.getParentName());
 						if (!beanName.equals(parentBeanName)) {
+							//父类继续递归合并属性
 							pbd = getMergedBeanDefinition(parentBeanName);
 						}
 						else {
+							// 获取bd的 parent bean definition 的过程，最终结果记录到 pbd，
+							// 并且可以看到该过程中递归使用了getMergedBeanDefinition(), 为什么呢?
+							// 因为 bd 的 parent bd 可能也是个ChildBeanDefinition，所以该过程
+							// 需要递归处理
 							BeanFactory parent = getParentBeanFactory();
 							if (parent instanceof ConfigurableBeanFactory) {
 								pbd = ((ConfigurableBeanFactory) parent).getMergedBeanDefinition(parentBeanName);

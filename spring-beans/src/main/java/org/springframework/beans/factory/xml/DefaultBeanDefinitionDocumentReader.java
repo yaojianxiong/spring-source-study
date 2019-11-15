@@ -178,6 +178,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 						parseDefaultElement(ele, delegate);
 					}
 					else {
+						//自定义标签解析
 						delegate.parseCustomElement(ele);
 					}
 				}
@@ -312,6 +313,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		//根据解析委派器解析成BeanDefinitionHolder(如name ,id,alias等)
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
+			//解析自定义标签
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
 			try {
 				// Register the final decorated instance.

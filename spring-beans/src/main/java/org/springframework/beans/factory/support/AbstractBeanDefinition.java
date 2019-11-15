@@ -51,6 +51,9 @@ import org.springframework.util.StringUtils;
  * @see GenericBeanDefinition
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
+ *
+ * BeanDefinition的基本属性
+ *
  */
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor
@@ -134,56 +137,107 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	public static final String INFER_METHOD = "(inferred)";
 
-
+	/**
+	 * bean class属性对应的加载类
+	 */
 	private volatile Object beanClass;
-
+	/**
+	 * bean作用范围 单例/多例等
+	 */
 	private String scope = SCOPE_DEFAULT;
-
+	/**
+	 * 是否抽象
+	 */
 	private boolean abstractFlag = false;
-
+	/**
+	 * 是否懒加载
+	 */
 	private boolean lazyInit = false;
-
+	/**
+	 * 自动注入模式
+	 */
 	private int autowireMode = AUTOWIRE_NO;
-
+	/**
+	 *依赖检查，spring 2.0弃用
+	 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
-
+	/**
+	 * bean实例化前依赖另一个bean先依赖
+	 */
 	private String[] dependsOn;
-
+	/**
+	 * 该属性设置为false则Spring不考虑该Bean作为其他bean的自动装配对象
+	 */
 	private boolean autowireCandidate = true;
-
+	/**
+	 * 自动装配出现多个bean时，该bean作为首个候选者
+	 */
 	private boolean primary = false;
-
+	/**
+	 * 记录bean注入容器的名字
+	 */
 	private final Map<String, AutowireCandidateQualifier> qualifiers =
 			new LinkedHashMap<String, AutowireCandidateQualifier>(0);
 
+	/**
+	 * 允许访问非公开方法和构造器
+	 */
 	private boolean nonPublicAccessAllowed = true;
-
+	/**
+	 * 允许多个构造器
+	 */
 	private boolean lenientConstructorResolution = true;
-
+	/**
+	 * 工厂创建对象类名
+	 */
 	private String factoryBeanName;
-
+	/**
+	 * 工厂创建对象对应的方法
+	 */
 	private String factoryMethodName;
-
+	/**
+	 * 保存构造器相关属性
+	 */
 	private ConstructorArgumentValues constructorArgumentValues;
-
+	/**
+	 * 属性集合
+	 */
 	private MutablePropertyValues propertyValues;
-
+	/**
+	 * 创建重新方法对象，用于replace和look-up method
+	 */
 	private MethodOverrides methodOverrides = new MethodOverrides();
-
+	/**
+	 * 初始化方法名称
+	 */
 	private String initMethodName;
-
+	/**
+	 * 销毁方法名称
+	 */
 	private String destroyMethodName;
-
+	/**
+	 * 是否执行初始化方法 程序设置
+	 */
 	private boolean enforceInitMethod = true;
-
+	/**
+	 * 是否执行销毁方法 程序设置
+	 */
 	private boolean enforceDestroyMethod = true;
-
+	/**
+	 * 是否是用户定义的而不是 川军tlJ于本身定义的，创建 AOP 时候为true ，程序设置
+	 */
 	private boolean synthetic = false;
-
+	/**
+	 * bean的角色 ，application:用户  infrastructure:完全内部 SUPPORT一些内部的支持，程序设置
+	 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
-
+	/**
+	 * bean的描述信息
+	 */
 	private String description;
-
+	/**
+	 * bean定义的资源
+	 */
 	private Resource resource;
 
 
