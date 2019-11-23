@@ -49,6 +49,14 @@ import org.springframework.core.io.Resource;
  * @see XmlBeanDefinitionReader
  * @deprecated as of Spring 3.1 in favor of {@link DefaultListableBeanFactory} and
  * {@link XmlBeanDefinitionReader}
+ *
+ * 过时原因
+ * 直接写死了reder的实现，
+ * 实际上DefaultListableBeanFactory才是核心功能类
+ * 推荐方法
+ *  DefaultListableBeanFactory that = new DefaultListableBeanFactory();
+ *  new XmlBeanDefinitionReader(that).loadBeanDefinitions(resource);
+ *
  */
 @Deprecated
 @SuppressWarnings({"serial", "all"})

@@ -32,6 +32,9 @@ import org.springframework.core.MethodParameter;
  * @since 2.0
  * @see SimpleTypeConverter
  * @see BeanWrapperImpl
+ *
+ * convertIfNecessary 如果需要的则进行属性转换
+ *
  */
 public interface TypeConverter {
 

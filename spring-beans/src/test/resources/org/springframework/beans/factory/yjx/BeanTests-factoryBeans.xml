@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="yjxFactoryBeanTests" class="org.springframework.beans.factory.yjx.YjxFactoryBean"/>
+
+	<!-- 静态工厂 -->
+	<bean id="yjxChild" class="org.springframework.beans.factory.yjx.YjxFactoryMethod" factory-method="createStaticYjxChild"/>
+
+
+	<bean id="yjxFactory" class="org.springframework.beans.factory.yjx.YjxFactoryMethod" />
+	<bean id="yjxChild1" factory-bean="yjxFactory" factory-method="createYjxChild"/>
+
+</beans>

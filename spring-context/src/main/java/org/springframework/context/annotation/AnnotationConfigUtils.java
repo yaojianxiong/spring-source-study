@@ -58,6 +58,13 @@ import org.springframework.util.ClassUtils;
  * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
  * @see org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
  * @see org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
+ * 6大后置处理器：====
+ * 	1.ConfigurationClassPostProcessor
+ * 	2.AutowiredAnnotationBeanPostProcessor
+ * 	3.CommonAnnotationBeanPostProcessor
+ * 	4.Jpa的PersistenceAnnotationProcessor（没导包就不会注册）
+ * 	5.EventListenerMethodProcessor
+ * 	6.DefaultEventListenerFactory
  */
 public class AnnotationConfigUtils {
 

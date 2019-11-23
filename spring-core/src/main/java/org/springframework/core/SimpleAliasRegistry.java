@@ -210,6 +210,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 				canonicalName = resolvedName;
 			}
 		}
+		//这里使用循环是为了防止别名取的还是别名,最终递归取的最终bean名称
 		while (resolvedName != null);
 		return canonicalName;
 	}

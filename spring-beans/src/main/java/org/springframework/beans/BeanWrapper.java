@@ -45,6 +45,13 @@ import java.beans.PropertyDescriptor;
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.validation.BeanPropertyBindingResult
  * @see org.springframework.validation.DataBinder#initBeanPropertyAccess()
+ *
+ * setAutoGrowCollectionLimit(int autoGrowCollectionLimit) 设置自动增长集合限制
+ * getAutoGrowCollectionLimit 获取自动增长集合限制
+ * getWrappedInstance 获取包装类实例
+ * getWrappedClass 获取包装类类型
+ * getPropertyDescriptors() 获取所有属性描述
+ * getPropertyDescriptor(String propertyName) 获取属性描述
  */
 public interface BeanWrapper extends ConfigurablePropertyAccessor {
 

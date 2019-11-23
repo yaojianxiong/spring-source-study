@@ -30,6 +30,15 @@ import org.springframework.core.convert.TypeDescriptor;
  * @see BeanWrapper
  * @see PropertyAccessorFactory#forBeanPropertyAccess
  * @see PropertyAccessorFactory#forDirectFieldAccess
+ * 属性访问接口
+ *
+ * isReadableProperty(String propertyName)是否可读
+ * isWritableProperty(String propertyName)是否可写
+ * getPropertyType(String propertyName) 获取属性类型
+ * getPropertyTypeDescriptor(String propertyName)获取属性类型描述
+ * getPropertyValue(String propertyName)获取属性对应的值
+ * setPropertyValue(...)设置属性对应的值
+ *
  */
 public interface PropertyAccessor {
 

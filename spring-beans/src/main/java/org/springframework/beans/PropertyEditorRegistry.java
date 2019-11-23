@@ -31,6 +31,10 @@ import java.beans.PropertyEditor;
  * @see PropertyEditorRegistrar
  * @see BeanWrapper
  * @see org.springframework.validation.DataBinder
+ *
+ * registerCustomEditor 注册自定义属性编辑器
+ * findCustomEditor 查找自定义属性编辑器
+ *
  */
 public interface PropertyEditorRegistry {
 

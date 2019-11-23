@@ -86,15 +86,27 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/** Cache of singleton objects: bean name --> bean instance */
+	/**
+	 * 保存单例bean容器
+	 */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(256);
 
 	/** Cache of singleton factories: bean name --> ObjectFactory */
+	/**
+	 * 用来保存factoryBean的容器
+	 */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<String, ObjectFactory<?>>(16);
 
 	/** Cache of early singleton objects: bean name --> bean instance */
+	/**
+	 * 使bean刚准备创建时候就暴露出来，防止循环依赖
+	 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<String, Object>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order */
+	/**
+	 * 记录已经注册的单例bean名称
+	 */
 	private final Set<String> registeredSingletons = new LinkedHashSet<String>(256);
 
 	/** Names of beans that are currently in creation */
@@ -118,9 +130,11 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Map<String, Set<String>> containedBeanMap = new ConcurrentHashMap<String, Set<String>>(16);
 
 	/** Map between dependent bean names: bean name --> Set of dependent bean names */
+	//用于记录当前bean被依赖的bean集合
 	private final Map<String, Set<String>> dependentBeanMap = new ConcurrentHashMap<String, Set<String>>(64);
 
 	/** Map between depending bean names: bean name --> Set of bean names for the bean's dependencies */
+	//用于记录当前bean所依赖的bean集合
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<String, Set<String>>(64);
 
 
@@ -186,11 +200,15 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		Object singletonObject = this.singletonObjects.get(beanName);
+		//判断bean是否是单例，如果是则需做处理，主要是为了防止循环依赖
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
+				//从刚准备创建的bean中获取beanName
 				singletonObject = this.earlySingletonObjects.get(beanName);
+				//如果在已经加入单例的记录中不存在bean信息，并且bean是允许提前引用的,则从singletonFactories 工厂bean中获取
 				if (singletonObject == null && allowEarlyReference) {
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
+					//如果bean存在对应的工厂bean，则调用工厂bean 的getObject获取到bean对象，并把bean信息暴露进earlySingletonObjects
 					if (singletonFactory != null) {
 						singletonObject = singletonFactory.getObject();
 						this.earlySingletonObjects.put(beanName, singletonObject);
@@ -410,6 +428,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		String canonicalName = canonicalName(beanName);
 
 		synchronized (this.dependentBeanMap) {
+			//记录beanName被依赖的集合
 			Set<String> dependentBeans = this.dependentBeanMap.get(canonicalName);
 			if (dependentBeans == null) {
 				dependentBeans = new LinkedHashSet<String>(8);
@@ -418,6 +437,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 			dependentBeans.add(dependentBeanName);
 		}
 		synchronized (this.dependenciesForBeanMap) {
+			//记录dependentBeanName所依赖的集合
 			Set<String> dependenciesForBean = this.dependenciesForBeanMap.get(dependentBeanName);
 			if (dependenciesForBean == null) {
 				dependenciesForBean = new LinkedHashSet<String>(8);

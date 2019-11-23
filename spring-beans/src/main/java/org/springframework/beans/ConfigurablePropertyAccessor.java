@@ -22,6 +22,9 @@ import org.springframework.core.convert.ConversionService;
  * Interface that encapsulates configuration methods for a PropertyAccessor.
  * Also extends the PropertyEditorRegistry interface, which defines methods
  * for PropertyEditor management.
+ * 封装PropertyAccessor的配置方法的接口。
+ * 还扩展了PropertyEditorRegistry接口，该接口定义了方法
+ * 属性编辑管理
  *
  * <p>Serves as base interface for {@link BeanWrapper}.
  *
@@ -29,6 +32,17 @@ import org.springframework.core.convert.ConversionService;
  * @author Stephane Nicoll
  * @since 2.0
  * @see BeanWrapper
+ *
+ * 可配置属性访问器
+ * 继承接口
+ * PropertyAccessor 属性访问
+ * PropertyEditorRegistry 属性编辑注册
+ * TypeConverter 类型转换
+ *
+ * setConversionService 设置类型转换服务
+ * getConversionService 获取类型转换服务
+ *
+ *
  */
 public interface ConfigurablePropertyAccessor extends PropertyAccessor, PropertyEditorRegistry, TypeConverter {
 

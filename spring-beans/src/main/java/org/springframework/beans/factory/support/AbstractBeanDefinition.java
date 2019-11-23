@@ -224,7 +224,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	private boolean enforceDestroyMethod = true;
 	/**
-	 * 是否是用户定义的而不是 川军tlJ于本身定义的，创建 AOP 时候为true ，程序设置
+	 * 是否是用户定义的而不是程序本身定义的，创建 AOP 时候为true ，程序设置
 	 */
 	private boolean synthetic = false;
 	/**
@@ -1050,6 +1050,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		}
 		else if (count == 1) {
 			// Mark override as not overloaded, to avoid the overhead of arg type checking.
+			//将override标记为未重载，以避免arg类型检查的开销
 			mo.setOverloaded(false);
 		}
 	}

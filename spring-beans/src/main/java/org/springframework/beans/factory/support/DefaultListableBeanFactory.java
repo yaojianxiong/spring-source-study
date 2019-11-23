@@ -738,13 +738,18 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		List<String> beanNames = new ArrayList<String>(this.beanDefinitionNames);
 
 		// Trigger initialization of all non-lazy singleton beans...
+		//开始遍历所有bean进行初始化
 		for (String beanName : beanNames) {
 			//获取合并后的BeanDefinition
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
+			//初始化单例非懒加载bean
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
+				//如果是工厂bean使用"&"标识进行获取工厂对象
 				if (isFactoryBean(beanName)) {
 					final FactoryBean<?> factory = (FactoryBean<?>) getBean(FACTORY_BEAN_PREFIX + beanName);
 					boolean isEagerInit;
+					//如果是SmartFactoryBean 调用其isEagerInit初始化方法
+					//如果程序加了权限，则使用AccessController.doPrivileged提供给外部程序调用
 					if (System.getSecurityManager() != null && factory instanceof SmartFactoryBean) {
 						isEagerInit = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
 							@Override
@@ -757,6 +762,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						isEagerInit = (factory instanceof SmartFactoryBean &&
 								((SmartFactoryBean<?>) factory).isEagerInit());
 					}
+					//调用初始化方法成功才获取Bean
 					if (isEagerInit) {
 						getBean(beanName);
 					}
@@ -1063,19 +1069,26 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		descriptor.initParameterNameDiscovery(getParameterNameDiscoverer());
 		if (javaUtilOptionalClass == descriptor.getDependencyType()) {
+			//javaUtilOptionalClass类型注入的处理
 			return new OptionalDependencyFactory().createOptionalDependency(descriptor, requestingBeanName);
 		}
 		else if (ObjectFactory.class == descriptor.getDependencyType() ||
 				ObjectProvider.class == descriptor.getDependencyType()) {
+			//ObjectFactory和ObjectProvider类型的处理
 			return new DependencyObjectProvider(descriptor, requestingBeanName);
 		}
 		else if (javaxInjectProviderClass == descriptor.getDependencyType()) {
+			//javaxInjectProviderClass类注入的特殊处理
 			return new Jsr330ProviderFactory().createDependencyProvider(descriptor, requestingBeanName);
 		}
 		else {
+			//spring 4.0后 ContextAnnotationAutowireCandidateResolver getLazyResolutionProxyIfNecessary 对@Lazy注解的支持
+			//Spring不会立即创建注入属性的实例，而是生成代理对象，来代替实例
+			//https://blog.csdn.net/f641385712/article/details/93620967
 			Object result = getAutowireCandidateResolver().getLazyResolutionProxyIfNecessary(
 					descriptor, requestingBeanName);
 			if (result == null) {
+				//通用类型处理
 				result = doResolveDependency(descriptor, requestingBeanName, autowiredBeanNames, typeConverter);
 			}
 			return result;
@@ -1084,35 +1097,49 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 	public Object doResolveDependency(DependencyDescriptor descriptor, String beanName,
 			Set<String> autowiredBeanNames, TypeConverter typeConverter) throws BeansException {
+		//see https://blog.csdn.net/f641385712/article/details/93620967
 
 		InjectionPoint previousInjectionPoint = ConstructorResolver.setCurrentInjectionPoint(descriptor);
 		try {
+			//Spring在第一次创建依赖的bean时，会保存该bean的beanName作为shortcut
+			//在第二次创建时，就可以直接根据beanName调用getBean方法，不需要再根据类型来重新查询一遍
+			//AutowiredAnnotationBeanPostProcessor resolveShortcut
 			Object shortcut = descriptor.resolveShortcut(this);
 			if (shortcut != null) {
 				return shortcut;
 			}
-
+			//根据描述器获取注入属性的类型
 			Class<?> type = descriptor.getDependencyType();
+			//处理@Value注解-------------------------------------
+			//获取@Value中的value属性
 			Object value = getAutowireCandidateResolver().getSuggestedValue(descriptor);
 			if (value != null) {
 				if (value instanceof String) {
+					//解析value
 					String strVal = resolveEmbeddedValue((String) value);
 					BeanDefinition bd = (beanName != null && containsBean(beanName) ? getMergedBeanDefinition(beanName) : null);
 					value = evaluateBeanDefinitionString(strVal, bd);
 				}
 				TypeConverter converter = (typeConverter != null ? typeConverter : getTypeConverter());
+				//如果需要会进行类型转换后返回结果
 				return (descriptor.getField() != null ?
 						converter.convertIfNecessary(value, type, descriptor.getField()) :
 						converter.convertIfNecessary(value, type, descriptor.getMethodParameter()));
 			}
-
+			//对数组、容器类型的处理
+			//因为是数组或容器，Sprng可以直接把符合类型的bean都注入到数组或容器中，处理逻辑是：
+			//1.确定容器或数组的组件类型
+			//2.调用findAutowireCandidates方法，获取与组件类型匹配的Map(beanName -> bean实例)
+			//3.将符合beanNames添加到autowiredBeanNames中
 			Object multipleBeans = resolveMultipleBeans(descriptor, beanName, autowiredBeanNames, typeConverter);
 			if (multipleBeans != null) {
 				return multipleBeans;
 			}
-
+			//对非数组、容器对象的处理
+			//获取所有类型匹配的Map(beanName -> bean实例)
 			Map<String, Object> matchingBeans = findAutowireCandidates(beanName, type, descriptor);
 			if (matchingBeans.isEmpty()) {
+				//如果配置了required属性为true(默认值也是true)的话，抛出异常
 				if (isRequired(descriptor)) {
 					raiseNoMatchingBeanFound(type, descriptor.getResolvableType(), descriptor);
 				}
@@ -1121,7 +1148,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 			String autowiredBeanName;
 			Object instanceCandidate;
-
+			//如果类型匹配的bean不止一个，Spring需要进行筛选，筛选失败的话抛出异常
 			if (matchingBeans.size() > 1) {
 				autowiredBeanName = determineAutowireCandidate(matchingBeans, descriptor);
 				if (autowiredBeanName == null) {
@@ -1139,6 +1166,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			else {
 				// We have exactly one match.
+				//只有一个bean与类型匹配，那么直接使用该bean
 				Map.Entry<String, Object> entry = matchingBeans.entrySet().iterator().next();
 				autowiredBeanName = entry.getKey();
 				instanceCandidate = entry.getValue();
@@ -1147,6 +1175,9 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (autowiredBeanNames != null) {
 				autowiredBeanNames.add(autowiredBeanName);
 			}
+			//如果获取到instanceCandidate是Class类型
+			//那么还需要beanFactory.getBean(autowiredBeanName, instanceCandidate)来获取bean的实例
+			//否则直接返回bean
 			return (instanceCandidate instanceof Class ?
 					descriptor.resolveCandidate(autowiredBeanName, type, this) : instanceCandidate);
 		}
