@@ -86,7 +86,7 @@ class InstantiationModelAwarePointcutAdvisorImpl
 		this.aspectInstanceFactory = aspectInstanceFactory;
 		this.declarationOrder = declarationOrder;
 		this.aspectName = aspectName;
-
+		//是否是懒加载
 		if (aspectInstanceFactory.getAspectMetadata().isLazilyInstantiated()) {
 			// Static part of the pointcut is a lazy type.
 			Pointcut preInstantiationPointcut = Pointcuts.union(
@@ -103,6 +103,7 @@ class InstantiationModelAwarePointcutAdvisorImpl
 			// A singleton aspect.
 			this.pointcut = this.declaredPointcut;
 			this.lazy = false;
+			//创建实例
 			this.instantiatedAdvice = instantiateAdvice(this.declaredPointcut);
 		}
 	}
@@ -157,6 +158,7 @@ class InstantiationModelAwarePointcutAdvisorImpl
 
 
 	private Advice instantiateAdvice(AspectJExpressionPointcut pcut) {
+		//aspectJAdvisorFactory工厂根据不同类型创建Advice对象
 		return this.aspectJAdvisorFactory.getAdvice(this.aspectJAdviceMethod, pcut,
 				this.aspectInstanceFactory, this.declarationOrder, this.aspectName);
 	}

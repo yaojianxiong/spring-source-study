@@ -1173,6 +1173,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 
 			if (autowiredBeanNames != null) {
+				//记录一个bean对应的beanName
 				autowiredBeanNames.add(autowiredBeanName);
 			}
 			//如果获取到instanceCandidate是Class类型

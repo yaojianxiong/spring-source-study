@@ -128,24 +128,32 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 		// We need to wrap the MetadataAwareAspectInstanceFactory with a decorator
 		// so that it will only instantiate once.
+		//包装metadataawareaspectionstancefactory
+		//以便它只实例化一次
+		//aspectJAdvisorFactory工厂实现
 		MetadataAwareAspectInstanceFactory lazySingletonAspectInstanceFactory =
 				new LazySingletonAspectInstanceFactoryDecorator(aspectInstanceFactory);
 
 		List<Advisor> advisors = new LinkedList<Advisor>();
+		//遍历所有的非@Pointcut注解的方法
 		for (Method method : getAdvisorMethods(aspectClass)) {
+			//找到方法第一个标有的注解 优先级（Before.class, Around.class, After.class, AfterReturning.class, AfterThrowing.class, Pointcut.class）
 			Advisor advisor = getAdvisor(method, lazySingletonAspectInstanceFactory, advisors.size(), aspectName);
 			if (advisor != null) {
+				//添加通知器
 				advisors.add(advisor);
 			}
 		}
 
 		// If it's a per target aspect, emit the dummy instantiating aspect.
+		//通过在头部加入SyntheticInstantiationAdvisor增强器，达到延迟初始化切面bean的目的
 		if (!advisors.isEmpty() && lazySingletonAspectInstanceFactory.getAspectMetadata().isLazilyInstantiated()) {
 			Advisor instantiationAdvisor = new SyntheticInstantiationAdvisor(lazySingletonAspectInstanceFactory);
 			advisors.add(0, instantiationAdvisor);
 		}
 
 		// Find introduction fields.
+		//对@DeclareParent注解功能的支持
 		for (Field field : aspectClass.getDeclaredFields()) {
 			Advisor advisor = getDeclareParentsAdvisor(field);
 			if (advisor != null) {
@@ -162,6 +170,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			@Override
 			public void doWith(Method method) throws IllegalArgumentException {
 				// Exclude pointcuts
+				//去掉Pointcut标记的方法
 				if (AnnotationUtils.getAnnotation(method, Pointcut.class) == null) {
 					methods.add(method);
 				}
@@ -199,18 +208,19 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			int declarationOrderInAspect, String aspectName) {
 
 		validate(aspectInstanceFactory.getAspectMetadata().getAspectClass());
-
+		//切点信息的获取（Before.class, Around.class, After.class, AfterReturning.class, AfterThrowing.class, Pointcut.class）
 		AspectJExpressionPointcut expressionPointcut = getPointcut(
 				candidateAdviceMethod, aspectInstanceFactory.getAspectMetadata().getAspectClass());
 		if (expressionPointcut == null) {
 			return null;
 		}
-
+		//根据切点信息生成不同类型的强器
 		return new InstantiationModelAwarePointcutAdvisorImpl(expressionPointcut, candidateAdviceMethod,
 				this, aspectInstanceFactory, declarationOrderInAspect, aspectName);
 	}
 
 	private AspectJExpressionPointcut getPointcut(Method candidateAdviceMethod, Class<?> candidateAspectClass) {
+		//找到第一个就跳过，注解优先级
 		AspectJAnnotation<?> aspectJAnnotation =
 				AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(candidateAdviceMethod);
 		if (aspectJAnnotation == null) {

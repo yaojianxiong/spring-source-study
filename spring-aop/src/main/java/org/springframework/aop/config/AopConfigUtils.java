@@ -110,14 +110,17 @@ public abstract class AopConfigUtils {
 		if (registry.containsBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME)) {
 			BeanDefinition apcDefinition = registry.getBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME);
 			if (!cls.getName().equals(apcDefinition.getBeanClassName())) {
+				//根据优先级看选择哪个class作为org.springframework.aop.config.internalAutoProxyCreator实现
 				int currentPriority = findPriorityForClass(apcDefinition.getBeanClassName());
 				int requiredPriority = findPriorityForClass(cls);
 				if (currentPriority < requiredPriority) {
 					apcDefinition.setBeanClassName(cls.getName());
 				}
 			}
+			//如果已经存在自动代理创建器并且与将要创建的一致，那么无须再次创建
 			return null;
 		}
+		//注册AnnotationAwareAspectJAutoProxyCreator
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
 		beanDefinition.setSource(source);
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);
