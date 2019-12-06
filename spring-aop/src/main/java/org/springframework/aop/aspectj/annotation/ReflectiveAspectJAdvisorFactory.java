@@ -140,7 +140,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			//找到方法第一个标有的注解 优先级（Before.class, Around.class, After.class, AfterReturning.class, AfterThrowing.class, Pointcut.class）
 			Advisor advisor = getAdvisor(method, lazySingletonAspectInstanceFactory, advisors.size(), aspectName);
 			if (advisor != null) {
-				//添加通知器
+				//添加增强器
 				advisors.add(advisor);
 			}
 		}
@@ -323,6 +323,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 		public SyntheticInstantiationAdvisor(final MetadataAwareAspectInstanceFactory aif) {
 			super(aif.getAspectMetadata().getPerClausePointcut(), new MethodBeforeAdvice() {
+				//目标方法前调用
 				@Override
 				public void before(Method method, Object[] args, Object target) {
 					// Simply instantiate the aspect

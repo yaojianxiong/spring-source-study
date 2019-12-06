@@ -25,6 +25,8 @@ import org.springframework.core.Ordered;
  * @author Adrian Colyer
  * @since 2.0
  * @see org.springframework.aop.aspectj.autoproxy.AspectJPrecedenceComparator
+ *
+ * AspectJ 优先级信息
  */
 public interface AspectJPrecedenceInformation extends Ordered {
 

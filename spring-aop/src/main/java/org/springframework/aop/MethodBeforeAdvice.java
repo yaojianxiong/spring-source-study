@@ -22,6 +22,8 @@ import java.lang.reflect.Method;
  * Advice invoked before a method is invoked. Such advices cannot
  * prevent the method call proceeding, unless they throw a Throwable.
  *
+ * 在调用方法之前调用的通知。这样的建议不能阻止方法调用的进行，除非它们抛出一个抛出对象。
+ *
  * @see AfterReturningAdvice
  * @see ThrowsAdvice
  *

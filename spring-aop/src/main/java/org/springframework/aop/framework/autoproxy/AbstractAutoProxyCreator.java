@@ -446,33 +446,41 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 */
 	protected Object createProxy(
 			Class<?> beanClass, String beanName, Object[] specificInterceptors, TargetSource targetSource) {
-
+        //如果beanFactory是ConfigurableListableBeanFactory 把bean类型设置进该Bean bf的attribute属性
 		if (this.beanFactory instanceof ConfigurableListableBeanFactory) {
 			AutoProxyUtils.exposeTargetClass((ConfigurableListableBeanFactory) this.beanFactory, beanName, beanClass);
 		}
-
+        //代理工厂对象
 		ProxyFactory proxyFactory = new ProxyFactory();
+		//复制当前类中的相关属性
 		proxyFactory.copyFrom(this);
-
+		//Proxy-target-class 设置为true 强制使用cglib代理
+		//这里false为接口代理和cglib代理
 		if (!proxyFactory.isProxyTargetClass()) {
+			//存在preserveTargetClass属性则设置proxyTargeClass为true,targetClass代理
+			//决定对于给定的bean是否应该使用targetClass而不是他的接口代理
 			if (shouldProxyTargetClass(beanClass, beanName)) {
 				proxyFactory.setProxyTargetClass(true);
 			}
 			else {
+				//添加代理接口
 				evaluateProxyInterfaces(beanClass, proxyFactory);
 			}
 		}
-
+		//构建增强器
 		Advisor[] advisors = buildAdvisors(beanName, specificInterceptors);
+		//给代理工厂设置advisors
 		proxyFactory.addAdvisors(advisors);
+		//设置需要代理的beanName
 		proxyFactory.setTargetSource(targetSource);
+		//自定义对代理工厂类设计
 		customizeProxyFactory(proxyFactory);
 
 		proxyFactory.setFrozen(this.freezeProxy);
 		if (advisorsPreFiltered()) {
 			proxyFactory.setPreFiltered(true);
 		}
-
+		//创建AopProxy代理器获取代理对象
 		return proxyFactory.getProxy(getProxyClassLoader());
 	}
 
@@ -486,6 +494,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * @see AutoProxyUtils#shouldProxyTargetClass
 	 */
 	protected boolean shouldProxyTargetClass(Class<?> beanClass, String beanName) {
+		//判断使用什么代理
 		return (this.beanFactory instanceof ConfigurableListableBeanFactory &&
 				AutoProxyUtils.shouldProxyTargetClass((ConfigurableListableBeanFactory) this.beanFactory, beanName));
 	}
@@ -514,12 +523,16 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 */
 	protected Advisor[] buildAdvisors(String beanName, Object[] specificInterceptors) {
 		// Handle prototypes correctly...
+		//解析注册所有的interceptorNames
+		//interceptorNames通过setInterceptorNames()方法初始化
 		Advisor[] commonInterceptors = resolveInterceptorNames();
 
 		List<Object> allInterceptors = new ArrayList<Object>();
 		if (specificInterceptors != null) {
 			allInterceptors.addAll(Arrays.asList(specificInterceptors));
 			if (commonInterceptors.length > 0) {
+				//系统加入的commonInterceptors优先级默认高
+				//把切面解析获取的增强器specificInterceptors和commonInterceptors合并
 				if (this.applyCommonInterceptorsFirst) {
 					allInterceptors.addAll(0, Arrays.asList(commonInterceptors));
 				}
@@ -534,7 +547,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 			logger.debug("Creating implicit proxy for bean '" + beanName + "' with " + nrOfCommonInterceptors +
 					" common interceptors and " + nrOfSpecificInterceptors + " specific interceptors");
 		}
-
+		//封装转换为Advisor
 		Advisor[] advisors = new Advisor[allInterceptors.size()];
 		for (int i = 0; i < allInterceptors.size(); i++) {
 			advisors[i] = this.advisorAdapterRegistry.wrap(allInterceptors.get(i));

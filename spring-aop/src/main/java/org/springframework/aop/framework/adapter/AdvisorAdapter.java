@@ -32,6 +32,11 @@ import org.springframework.aop.Advisor;
  * <p>There is no need for most Spring users to implement this interface;
  * do so only if you need to introduce more Advisor or Advice types to Spring.
  *
+ * 接口允许对Spring AOP框架进行扩展，以允许处理新的顾问和建议类型。<p>实现对象
+ * 可以从定制的通知类型创建AOP联盟拦截器，从而使这些通知类型能够在springaop框架中
+ * 使用，该框架在底层使用拦截。<p>大多数Spring用户不需要实现这个接口；只有在需要向
+ * Spring引入更多的Advisor或Advice类型时才需要这样做。
+ *
  * @author Rod Johnson
  */
 public interface AdvisorAdapter {

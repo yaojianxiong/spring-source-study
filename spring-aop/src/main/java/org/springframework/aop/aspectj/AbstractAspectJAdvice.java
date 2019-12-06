@@ -52,6 +52,8 @@ import org.springframework.util.StringUtils;
  * Base class for AOP Alliance {@link org.aopalliance.aop.Advice} classes
  * wrapping an AspectJ aspect or an AspectJ-annotated advice method.
  *
+ * AOP基类，用来包装AspectJ切面或AspectJ注解的通知方法
+ *
  * @author Rod Johnson
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -624,6 +626,8 @@ public abstract class AbstractAspectJAdvice implements Advice, AspectJPrecedence
 		try {
 			ReflectionUtils.makeAccessible(this.aspectJAdviceMethod);
 			// TODO AopUtils.invokeJoinpointUsingReflection
+			//激活增强方法
+			//aspectJAdviceMethod切面方法对象 aspectInstanceFactory.getAspectInstance()切面 actualArgs 方法参数
 			return this.aspectJAdviceMethod.invoke(this.aspectInstanceFactory.getAspectInstance(), actualArgs);
 		}
 		catch (IllegalArgumentException ex) {

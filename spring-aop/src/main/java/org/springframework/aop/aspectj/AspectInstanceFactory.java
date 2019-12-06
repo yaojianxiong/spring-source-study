@@ -29,6 +29,8 @@ import org.springframework.core.Ordered;
  * @author Juergen Hoeller
  * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
+ *
+ * Aspect 实例化工厂
  */
 public interface AspectInstanceFactory extends Ordered {
 
