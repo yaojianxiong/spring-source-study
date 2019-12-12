@@ -130,7 +130,6 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		// so that it will only instantiate once.
 		//包装metadataawareaspectionstancefactory
 		//以便它只实例化一次
-		//aspectJAdvisorFactory工厂实现
 		MetadataAwareAspectInstanceFactory lazySingletonAspectInstanceFactory =
 				new LazySingletonAspectInstanceFactoryDecorator(aspectInstanceFactory);
 

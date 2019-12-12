@@ -120,7 +120,7 @@ public abstract class AopConfigUtils {
 			//如果已经存在自动代理创建器并且与将要创建的一致，那么无须再次创建
 			return null;
 		}
-		//注册AnnotationAwareAspectJAutoProxyCreator
+		//注册AspectJAutoProxyCreator 如AnnotationAwareAspectJAutoProxyCreator/InfrastructureAdvisorAutoProxyCreator
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
 		beanDefinition.setSource(source);
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);

@@ -142,8 +142,9 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		PerTargetAspect aspect1 = new PerTargetAspect();
 		aspect1.count = 100;
 		aspect1.setOrder(10);
+		SingletonMetadataAwareAspectInstanceFactory someBean1 = new SingletonMetadataAwareAspectInstanceFactory(aspect1, "someBean1");
 		advisors.addAll(
-				getFixture().getAdvisors(new SingletonMetadataAwareAspectInstanceFactory(aspect1, "someBean1")));
+				getFixture().getAdvisors(someBean1));
 		PerTargetAspect aspect2 = new PerTargetAspect();
 		aspect2.setOrder(5);
 		advisors.addAll(
